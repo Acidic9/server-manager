@@ -1,0 +1,36 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Parameter</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input class="input" value="ip"></td>
+			<td><input class="input" value="0.0.0.0"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="port"></td>
+			<td><input class="input" value="28960"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="defaultmap"></td>
+			<td><input class="input" value="mp_cassino"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="maxplayers"></td>
+			<td><input class="input" value="20"></td>
+		</tr>
+
+	</tbody>
+</table>
+<div class="field">
+	<label class="label">Launch Options</label>
+	<p class="control">
+		<textarea class="textarea">+set sv_punkbuster 0 +set fs_basepath ${serverfiles} +set dedicated 1 +set net_ip ${ip} +set net_port ${port} +set sv_maxclients ${maxplayers} +exec ${servercfg} +map ${defaultmap}</textarea>
+	</p>
+</div>

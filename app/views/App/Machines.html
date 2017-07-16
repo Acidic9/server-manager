@@ -1,0 +1,55 @@
+<!-- Variables -->
+{{set . "title" "Machines"}}
+{{set . "dashboardTitle" "Machines"}}
+{{append . "moreStyles" "machines.css"}}
+{{append . "moreScripts" "machines.js"}}
+
+<!-- Template Headers -->
+{{template "dashboard-header.html" .}}
+
+{{with .Machines}}
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="small-column"><input type="checkbox" class="select-all-checkbox"></th>
+				<th>Title</th>
+				<th>Address</th>
+				<th>Port</th>
+				<th>Username</th>
+			</tr>
+		</thead>
+		<tbody>
+	{{range .}}
+			<tr>
+				<td class="small-column">
+					<input type="checkbox" class="machine-checkbox">
+				</td>
+				<td>{{.Title}}</td>
+				<td>{{.Addr}}</td>
+				<td>{{.Port}}</td>
+				<td>{{.Username}}</td>
+			</tr>
+	{{end}}
+		</tbody>
+	</table>
+
+	<div class="block machine-buttons is-pulled-left">
+		<a class="button is-primary is-outlined" id="edit-machine-btn">Edit</a>
+		<a class="button is-danger is-outlined" id="remove-machine-btn">Remove</a>
+	</div>
+{{else}}
+	<p>
+		<span class="icon">
+			<i class="fa fa-exclamation-circle"></i>
+		</span> No Machines Found
+	</p>
+{{end}}
+
+<div class="block is-pulled-right">
+	<a href="/new-machine" class="button is-success">New <b>+</b></a>
+</div>
+
+<div class="is-clearfix"></div>
+
+<!-- Template Footers -->
+{{template "dashboard-footer.html" .}}

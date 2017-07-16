@@ -1,0 +1,76 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Parameter</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input class="input" value="ip"></td>
+			<td><input class="input" value="0.0.0.0"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="port"></td>
+			<td><input class="input" value="27015"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="clientport"></td>
+			<td><input class="input" value="27005"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="sourcetvport"></td>
+			<td><input class="input" value="27020"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="defaultmap"></td>
+			<td><input class="input" value="gm_construct"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="maxplayers"></td>
+			<td><input class="input" value="16"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="tickrate"></td>
+			<td><input class="input" value="66"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="gamemode"></td>
+			<td><input class="input" value="sandbox"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="workshopauth"></td>
+			<td><input class="input" value=""></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="workshopcollectionid"></td>
+			<td><input class="input" value=""></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="customparms"></td>
+			<td><input class="input" value="+r_hunkalloclightmaps 0"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="gslt"></td>
+			<td><input class="input" value=""></td>
+		</tr>
+
+	</tbody>
+</table>
+<div class="field">
+	<label class="label">Launch Options</label>
+	<p class="control">
+		<textarea class="textarea">-game garrysmod -strictportbind -ip ${ip} -port ${port} -tickrate ${tickrate} +host_workshop_collection ${workshopcollectionid} -authkey ${workshopauth} +clientport ${clientport} +tv_port ${sourcetvport} +gamemode ${gamemode} +map ${defaultmap} +sv_setsteamaccount ${gslt} +servercfgfile ${servercfg} -maxplayers ${maxplayers} ${customparms}</textarea>
+	</p>
+</div>

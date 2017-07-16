@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{{template "meta.html" .}}
+
+		<link rel="stylesheet" type="text/css" href="/public/css/lib/bulma.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/lib/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/lib/jquery.mCustomScrollbar.min.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/styles.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/dashboard.css">
+		{{range .moreStyles}}
+			<link rel="stylesheet" type="text/css" href="/public/css/{{.}}">
+		{{end}}
+	</head>
+	<body>
+
+		<div class="columns no-margin">
+			<aside class="column is-2 aside hero is-fullheight is-hidden-mobile nav-container">
+				<div>
+					<div class="main">
+						<div class="title">
+						{{- with .User.Username -}}
+							Welcome<br><span class="name username">{{.}}</span>
+						{{- else -}}
+							Guest User
+						{{- end -}}</div>
+						
+						<a href="/" class="item{{with .dashboardTitle}}{{if eq . "Dashboard"}} active{{end}}{{end}}">
+							<span class="icon"><i class="fa fa-dashboard"></i></span>
+							<span class="name">Dashboard</span>
+						</a>
+						<a href="/servers" class="item{{with .dashboardTitle}}{{if eq . "Servers"}} active{{end}}{{end}}">
+							<span class="icon"><i class="fa fa-gamepad"></i></span>
+							<span class="name">Servers</span>
+						</a>
+						<a href="/machines" class="item{{with .dashboardTitle}}{{if eq . "Machines"}} active{{end}}{{end}}">
+							<span class="icon"><i class="fa fa-server"></i></span>
+							<span class="name">Machines</span>
+						</a>
+						<a href="/settings" class="item{{with .dashboardTitle}}{{if eq . "Settings"}} active{{end}}{{end}}">
+							<span class="icon"><i class="fa fa-cog"></i></span>
+							<span class="name">Settings</span>
+						</a>
+						<br>
+						<a class="button is-danger" href="/logout">Logout</a>
+					</div>
+				</div>
+			</aside>
+			<div class="content column is-10">
+
+				<div class="container is-fullwidth">
+					<h1 class="title">
+						{{- with .dashboardTitle -}}
+							{{.}}
+						{{- else -}}
+							Dashboard
+						{{- end -}}
+					</h1>
+					
+					{{- with .dashboardSubtitle -}}
+						<h2 class="subtitle">
+							{{.}}
+						</h2>
+					{{- end -}}
+				</div>
+
+				<hr>
+
+				<div class="container page-content is-fullwidth">

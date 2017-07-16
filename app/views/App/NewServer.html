@@ -1,0 +1,145 @@
+<!-- Variables -->
+{{set . "title" "New Machine"}}
+{{set . "dashboardTitle" "New Server"}}
+{{append . "moreStyles" "lib/select2.css"}}
+{{append . "moreScripts" "lib/select2.min.js"}}
+{{append . "moreStyles" "new-server.css"}}
+{{append . "moreScripts" "new-server.js"}}
+
+<!-- Template Headers -->
+{{template "dashboard-header.html" .}}
+
+<div class="tabs">
+	<ul>
+		<li id="new-server-tab" class="is-active" title="Install a brand new server"><a>New Server</a></li>
+		<li id="existing-server-tab" title="Already have a server? Add it to the the list"><a>Existing Server</a></li>
+	</ul>
+</div>
+
+<form id="new-server-form">
+	<div class="field">
+		<label class="label">Game</label>
+		<p class="control">
+			<span class="select">
+				<select id="game-select" class="select2">
+					<option value="">Select Game</option>
+					<option value="ark">ARK: Survival Evolved (ark)</option>
+					<option value="arma3">ARMA 3 (arma3)</option>
+					<option value="bb2">BrainBread 2 (bb2)</option>
+					<option value="bf1942">Battlefield 1942 (bf1942)</option>
+					<option value="bmdm">Black Mesa: Deathmatch (bmdm)</option>
+					<option value="bo">Ballistic Overkill (bo)</option>
+					<option value="bs">Blade Symphony (bs)</option>
+					<option value="cc">Codename CURE (cc)</option>
+					<option value="cod2">Call of Duty 2 (cod2)</option>
+					<option value="cod4">Call of Duty 4 (cod4)</option>
+					<option value="cod">Call of Duty (cod)</option>
+					<option value="coduo">Call of Duty: United Offensive (coduo)</option>
+					<option value="codwaw">Call of Duty: World at War (codwaw)</option>
+					<option value="cscz">Counter-Strike: Condition Zero (cscz)</option>
+					<option value="csgo">Counter-Strike: Global Offensive (csgo)</option>
+					<option value="cs">Counter-Strike 1.6 (cs)</option>
+					<option value="css">Counter-Strike: Source (css)</option>
+					<option value="dab">Double Action: Boogaloo (dab)</option>
+					<option value="dmc">Deathmatch Classic (dmc)</option>
+					<option value="dod">Day of Defeat (dod)</option>
+					<option value="dods">Day of Defeat: Source (dods)</option>
+					<option value="doi">Day of Infamy (doi)</option>
+					<option value="dst">Don't Starve Together (dst)</option>
+					<option value="em">Empires Mod (em)</option>
+					<option value="fctr">Factorio (fctr)</option>
+					<option value="fof">Fistful of Frags (fof)</option>
+					<option value="ges">GoldenEye: Source (ges)</option>
+					<option value="gmod">Garry’s Mod (gmod)</option>
+					<option value="hl2dm">Half-Life 2: Deathmatch (hl2dm)</option>
+					<option value="hldm">Half-Life: Deathmatch (hldm)</option>
+					<option value="hldms">Half-Life Deathmatch: Source (hldms)</option>
+					<option value="hw">Hurtworld (hw)</option>
+					<option value="ins">Insurgency (ins)</option>
+					<option value="jc2">Just Cause 2 (jc2)</option>
+					<option value="kf">Killing Floor (kf)</option>
+					<option value="l4d2">Left 4 Dead 2 (l4d2)</option>
+					<option value="l4d">Left 4 Dead (l4d)</option>
+					<option value="mc">Minecraft (mc)</option>
+					<option value="mta">Multi Theft Auto (mta)</option>
+					<option value="mumble">Mumble (mumble)</option>
+					<option value="nmrih">No More Room in Hell (nmrih)</option>
+					<option value="ns2c">NS2: Combat (ns2c)</option>
+					<option value="ns2">Natural Selection 2 (ns2)</option>
+					<option value="opfor">Opposing Force (opfor)</option>
+					<option value="pc">Project Cars (pc)</option>
+					<option value="pvkii">Pirates, Vikings, &amp; Knights II (pvkii)</option>
+					<option value="pz">Project Zomboid (pz)</option>
+					<option value="q2">Quake 2 (q2)</option>
+					<option value="q3">Quake 3: Arena (q3)</option>
+					<option value="ql">Quake Live (ql)</option>
+					<option value="qw">Quake World (qw)</option>
+					<option value="ricochet">Ricochet (ricochet)</option>
+					<option value="ro">Red Orchestra: Ostfront 41-45 (ro)</option>
+					<option value="rust">Rust (rust)</option>
+					<option value="sb">Starbound (sb)</option>
+					<option value="sdtd">7 Days to Die (sdtd)</option>
+					<option value="ss3">Serious Sam 3: BFE (ss3)</option>
+					<option value="sven">Sven Co-op (sven)</option>
+					<option value="terraria">Terraria (terraria)</option>
+					<option value="tf2">Team Fortress 2 (tf2)</option>
+					<option value="tfc">Team Fortress Classic (tfc)</option>
+					<option value="ts3">Teamspeak 3 (ts3)</option>
+					<option value="tu">Tower Unite (tu)</option>
+					<option value="tw">Teeworlds (tw)</option>
+					<option value="ut2k4">Unreal Tournament 2004 (ut2k4)</option>
+					<option value="ut3">Unreal Tournament 3 (ut3)</option>
+					<option value="ut99">Unreal Tournament 99 (ut99)</option>
+					<option value="wet">Wolfenstein: Enemy Territory (wet)</option>
+				</select>
+			</span>
+		</p>
+	</div>
+
+	<div class="field">
+		<label class="label">Machine <small>(VPS/Dedicated Server)</small></label>
+		<p class="control">
+			<span class="select hidden mr4">
+				<select id="machine-select" class="select2">
+				</select>
+			</span>
+			<a class="button is-outlined no-border" id="refresh-machines" title="Refresh Machines">
+				<i class="fa fa-refresh" aria-hidden="true"></i>
+			</a>
+			<a href="/new-machine" target="_blank" class="button is-outlined no-border" title="Add New Machine">
+				<i class="fa fa-plus" aria-hidden="true"></i>
+			</a>
+		</p>
+	</div>
+
+	<!--<div class="field">
+		<label class="label">Directory</label>
+		<p class="control">
+			<input id="server-dir" class="input" type="text" placeholder="/serverfiles">
+		</p>
+	</div>-->
+
+	<br>
+
+	<label class="label hidden configuration-label">Configuration</label>
+
+	<div id="game-setup-fields"></div>
+
+	<br>
+
+	<div class="field is-grouped">
+		<p class="control">
+			<button id="submit-new-server-form" class="button is-primary" disabled>Install</button>
+		</p>
+		<p class="control">
+			<button id="reset-new-server-form" class="button is-link" type="button">Reset</button>
+		</p>
+	</div>
+</form>
+
+<form id="existing-server-form" class="hidden">
+	Coming soon.
+</form>
+
+<!-- Template Footers -->
+{{template "dashboard-footer.html" .}}

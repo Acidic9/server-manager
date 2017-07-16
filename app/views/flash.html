@@ -1,0 +1,15 @@
+<script>
+{{if .flash.success}}
+	alertify.success({{.flash.success}});
+{{end}}
+
+{{if or .errors .flash.error}}
+	{{if .flash.error}}
+		alertify.error({{.flash.error}});
+	{{end}}
+
+	{{range .errors}}
+		alertify.error({{.}});
+	{{end}}
+{{end}}
+</script>

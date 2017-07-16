@@ -1,0 +1,71 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Parameter</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input class="input" value="servername"></td>
+			<td><input class="input" value="Hurtworld LinuxGSM Server"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="ip"></td>
+			<td><input class="input" value="0.0.0.0"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="port"></td>
+			<td><input class="input" value="12871"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="queryport"></td>
+			<td><input class="input" value="12881"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="maxplayers"></td>
+			<td><input class="input" value="20"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="defaultmap"></td>
+			<td><input class="input" value=""></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="creativemode"></td>
+			<td><input class="input" value="0"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="gamelog"></td>
+			<td><input class="input" value="gamelog.txt"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="admins"></td>
+			<td><input class="input" value=""></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="loadsave"></td>
+			<td><input class="input" value=""></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="x64mode"></td>
+			<td><input class="input" value="0"></td>
+		</tr>
+
+	</tbody>
+</table>
+<div class="field">
+	<label class="label">Launch Options</label>
+	<p class="control">
+		<textarea class="textarea">-batchmode -nographics -exec &#34;host ${port} ${defaultmap} ${loadsave};queryport ${queryport};maxplayers ${maxplayers};servername ${servername};creativemode ${creativemode};${admins}&#34; -logfile &#34;${gamelog}&#34; </textarea>
+	</p>
+</div>

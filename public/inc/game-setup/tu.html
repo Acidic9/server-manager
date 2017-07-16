@@ -1,0 +1,31 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Parameter</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input class="input" value="ip"></td>
+			<td><input class="input" value="0.0.0.0"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="port"></td>
+			<td><input class="input" value="7777"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="queryport"></td>
+			<td><input class="input" value="27015"></td>
+		</tr>
+
+	</tbody>
+</table>
+<div class="field">
+	<label class="label">Launch Options</label>
+	<p class="control">
+		<textarea class="textarea">-log -MultiHome=${ip} -Port=${port} -QueryPort=${queryport} -TowerServerINI=${servicename}.ini</textarea>
+	</p>
+</div>

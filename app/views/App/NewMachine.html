@@ -1,0 +1,69 @@
+<!-- Variables -->
+{{set . "title" "New Machine"}}
+{{set . "dashboardTitle" "New Machine"}}
+{{append . "moreStyles" "lib/select2.css"}}
+{{append . "moreScripts" "lib/select2.min.js"}}
+{{append . "moreStyles" "new-machine.css"}}
+{{append . "moreScripts" "new-machine.js"}}
+
+<!-- Template Headers -->
+{{template "dashboard-header.html" .}}
+
+<form id="new-machine-form">
+	<div class="field title-field">
+		<label class="label">Title <small>(optional)</small></label>
+		<p class="control">
+			<input id="title" class="input" type="text" placeholder="Custom Label">
+		</p>
+	</div>
+
+	<div class="field address-field">
+		<label class="label">IP Address</label>
+		<p class="control">
+			<input id="address" class="input" type="text" placeholder="0.0.0.0">
+		</p>
+		<p class="help is-danger"></p>
+	</div>
+
+	<div class="field port-field">
+		<label class="label">Port</label>
+		<p class="control">
+			<input id="port" class="input" type="text" placeholder="22" value="22">
+		</p>
+		<p class="help is-danger"></p>
+	</div>
+
+	<div class="field username-field">
+		<label class="label">Username</label>
+		<p class="control">
+			<input id="username" class="input" type="text" placeholder="">
+		</p>
+		<p class="help is-danger"></p>
+	</div>
+
+	<div class="field password-field">
+		<label class="label">Password</label>
+		<p class="control">
+			<input id="password" class="input" type="password" placeholder="••••••••">
+		</p>
+		<p class="help is-danger"></p>
+	</div>
+
+	<br>
+
+	<div class="field is-grouped">
+		<p class="control">
+			<button id="submit-new-server-form" class="button is-primary">Add Machine</button>
+		</p>
+		<p class="control">
+			<button id="test-connection" class="button is-link" type="button">Test Connection</button>
+		</p>
+	</div>
+</form>
+
+<form id="existing-server-form" class="hidden">
+	Coming soon.
+</form>
+
+<!-- Template Footers -->
+{{template "dashboard-footer.html" .}}

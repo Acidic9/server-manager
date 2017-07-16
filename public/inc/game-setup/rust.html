@@ -1,0 +1,71 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Parameter</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input class="input" value="ip"></td>
+			<td><input class="input" value="0.0.0.0"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="port"></td>
+			<td><input class="input" value="28015"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="rconport"></td>
+			<td><input class="input" value="28016"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="rconpassword"></td>
+			<td><input class="input" value="CHANGE_ME"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="rconweb"></td>
+			<td><input class="input" value="1"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="servername"></td>
+			<td><input class="input" value="Rust"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="maxplayers"></td>
+			<td><input class="input" value="50"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="seed"></td>
+			<td><input class="input" value=""></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="worldsize"></td>
+			<td><input class="input" value="3000"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="saveinterval"></td>
+			<td><input class="input" value="300"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="tickrate"></td>
+			<td><input class="input" value="30"></td>
+		</tr>
+
+	</tbody>
+</table>
+<div class="field">
+	<label class="label">Launch Options</label>
+	<p class="control">
+		<textarea class="textarea">-batchmode +server.ip ${ip} +server.port ${port} +server.tickrate ${tickrate} +server.hostname &#34;${servername}&#34; +server.identity &#34;${servicename}&#34; ${conditionalseed} +server.maxplayers ${maxplayers} +server.worldsize ${worldsize} +server.saveinterval ${saveinterval} +rcon.web ${rconweb} +rcon.ip ${ip} +rcon.port ${rconport} +rcon.password &#34;${rconpassword}&#34; -logfile &#34;${gamelogdate}&#34;</textarea>
+	</p>
+</div>

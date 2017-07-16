@@ -1,0 +1,51 @@
+<!-- Variables -->
+{{set . "title" "Servers"}}
+{{set . "dashboardTitle" "Servers"}}
+{{append . "moreStyles" "servers.css"}}
+{{append . "moreScripts" "servers.js"}}
+
+<!-- Template Headers -->
+{{template "dashboard-header.html" .}}
+
+{{with .Machines}}
+	{{range .}}
+		<table class="table servers-table" data-machine-id="{{.ID}}">
+			<thead>
+				<tr>
+					<th class="small-column"><input type="checkbox" class="select-all-checkbox"></th>
+					<th class="small-column">Status</th>
+					<th>Name</th>
+					<th>Game</th>
+					<th class="small-column"></th>
+					<!--<th>Players</th>-->
+				</tr>
+			</thead>
+			<tbody>
+				
+				<span class="tag is-primary is-small machine-label" data-machine-id="{{.ID}}">{{.Title}}</span>
+				
+			</tbody>
+		</table>
+	{{end}}
+
+	<div class="block server-buttons is-pulled-left">
+		<a class="button is-primary is-outlined" id="start-server-btn">Start</a>
+		<a class="button is-primary is-outlined" id="stop-server-btn">Stop</a>
+		<a class="button is-primary is-outlined" id="restart-server-btn">Restart</a>
+	</div>
+{{else}}
+	<p>
+		<span class="icon">
+			<i class="fa fa-exclamation-circle"></i>
+		</span> No Machines Found
+	</p>
+{{end}}
+
+<div class="block is-pulled-right">
+	<a href="/new-server" class="button is-success">New <b>+</b></a>
+</div>
+
+<div class="is-clearfix"></div>
+
+<!-- Template Footers -->
+{{template "dashboard-footer.html" .}}

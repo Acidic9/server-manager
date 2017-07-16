@@ -1,0 +1,51 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Parameter</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input class="input" value="steamuser"></td>
+			<td><input class="input" value="username"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="steampass"></td>
+			<td><input class="input" value="password"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="ip"></td>
+			<td><input class="input" value="0.0.0.0"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="port"></td>
+			<td><input class="input" value="2302"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="mods"></td>
+			<td><input class="input" value=""></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="servermods"></td>
+			<td><input class="input" value=""></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="bepath"></td>
+			<td><input class="input" value=""></td>
+		</tr>
+
+	</tbody>
+</table>
+<div class="field">
+	<label class="label">Launch Options</label>
+	<p class="control">
+		<textarea class="textarea">-netlog -ip=${ip} -port=${port} -cfg=${networkcfgfullpath} -config=${servercfgfullpath} -mod=${mods} -servermod=${servermods} -bepath=${bepath} -autoinit -loadmissiontomemory</textarea>
+	</p>
+</div>

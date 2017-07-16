@@ -1,0 +1,41 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Parameter</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input class="input" value="ip"></td>
+			<td><input class="input" value="0.0.0.0"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="port"></td>
+			<td><input class="input" value="27015"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="clientport"></td>
+			<td><input class="input" value="27005"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="defaultmap"></td>
+			<td><input class="input" value="c5m1_waterfront"></td>
+		</tr>
+
+		<tr>
+			<td><input class="input" value="maxplayers"></td>
+			<td><input class="input" value="8"></td>
+		</tr>
+
+	</tbody>
+</table>
+<div class="field">
+	<label class="label">Launch Options</label>
+	<p class="control">
+		<textarea class="textarea">-game left4dead2 -strictportbind -ip ${ip} -port ${port} +clientport ${clientport} +map ${defaultmap} +servercfgfile ${servercfg} -maxplayers ${maxplayers}</textarea>
+	</p>
+</div>

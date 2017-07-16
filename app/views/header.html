@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{{template "meta.html" .}}
+
+		<link rel="stylesheet" type="text/css" href="/public/css/lib/bulma.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/lib/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/lib/jquery.mCustomScrollbar.min.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/styles.css">
+		{{range .moreStyles}}
+			<link rel="stylesheet" type="text/css" href="/public/css/{{.}}">
+		{{end}}
+	</head>
+	<body>
