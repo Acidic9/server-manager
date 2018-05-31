@@ -2,6 +2,7 @@
 {{set . "title" "Servers"}}
 {{set . "dashboardTitle" "Servers"}}
 {{append . "moreStyles" "servers.css"}}
+{{append . "moreScripts" "server.js"}}
 {{append . "moreScripts" "servers.js"}}
 
 <!-- Template Headers -->
@@ -32,6 +33,9 @@
 		<a class="button is-primary is-outlined" id="start-server-btn">Start</a>
 		<a class="button is-primary is-outlined" id="stop-server-btn">Stop</a>
 		<a class="button is-primary is-outlined" id="restart-server-btn">Restart</a>
+		<a class="button is-primary is-outlined" id="restart-server-btn">Update</a>
+		<a class="button is-primary is-outlined" id="restart-server-btn">Validate</a>
+		<a class="button is-primary is-outlined" id="restart-server-btn">Debug</a>
 	</div>
 {{else}}
 	<p>

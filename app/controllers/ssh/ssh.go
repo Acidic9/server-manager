@@ -7,6 +7,7 @@ import (
 	"log"
 	"net"
 	"strings"
+	"time"
 
 	"golang.org/x/crypto/ssh"
 )
@@ -17,13 +18,21 @@ type Connection struct {
 }
 
 // Connect connects and returns a connection to a remote host.
-func Connect(addr, user, password string) (*Connection, error) {
+func Connect(addr, user, password string, timout ...time.Duration) (*Connection, error) {
+	if len(timout) > 1 {
+		panic("multiple timout parameters parsed")
+	}
+
 	sshConfig := &ssh.ClientConfig{
 		User: user,
 		Auth: []ssh.AuthMethod{
 			ssh.Password(password),
 		},
 		HostKeyCallback: ssh.HostKeyCallback(func(hostname string, remote net.Addr, key ssh.PublicKey) error { return nil }),
+	}
+
+	if len(timout) > 0 {
+		sshConfig.Timeout = timout[0]
 	}
 
 	conn, err := ssh.Dial("tcp", addr, sshConfig)

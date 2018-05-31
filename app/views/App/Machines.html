@@ -2,6 +2,7 @@
 {{set . "title" "Machines"}}
 {{set . "dashboardTitle" "Machines"}}
 {{append . "moreStyles" "machines.css"}}
+{{append . "moreScripts" "machine.js"}}
 {{append . "moreScripts" "machines.js"}}
 
 <!-- Template Headers -->
@@ -20,7 +21,7 @@
 		</thead>
 		<tbody>
 	{{range .}}
-			<tr>
+			<tr class="machine-row" id="machine-{{.ID}}" data-id="{{.ID}}">
 				<td class="small-column">
 					<input type="checkbox" class="machine-checkbox">
 				</td>

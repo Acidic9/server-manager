@@ -9,10 +9,10 @@ import (
 	"server-manager-revel/app/controllers/database"
 	"server-manager-revel/app/controllers/funcs"
 	"server-manager-revel/app/controllers/server-install"
+	"server-manager-revel/app/controllers/ssh"
 
 	"strconv"
 
-	"github.com/asaskevich/govalidator"
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
 	gossh "golang.org/x/crypto/ssh"
@@ -36,7 +36,7 @@ func (m *machine) GetFullAddr() string {
 }
 
 // /machine/add
-func (c Machine) Add() revel.Result {
+func (c Machine) Add(title, addr string, port int, username, password string) revel.Result {
 	var resp simpleJsonResp
 
 	User, err := getUserFromSession(c.Session)
@@ -46,37 +46,88 @@ func (c Machine) Add() revel.Result {
 		return c.RenderJSON(&resp)
 	}
 
-	title := c.Params.Get("title")
 	titlePtr := &title
 	if strings.Trim(title, " ") == "" {
 		titlePtr = nil
 	}
-	address := c.Params.Get("address")
-	if !govalidator.IsIP(address) {
-		resp.Err = "invalid-address"
+
+	if !c.Validation.Required("addr").Ok {
+		resp.Err = "empty-ip-address"
 		resp.Success = false
 		return c.RenderJSON(&resp)
 	}
 
-	portStr := c.Params.Get("port")
-	port, err := strconv.Atoi(portStr)
-	if err != nil || port < 1 || port > 9999 {
+	if !c.Validation.Min(port, 1).Ok || !c.Validation.Max(port, 9999).Ok {
 		resp.Err = "invalid-port"
 		resp.Success = false
 		return c.RenderJSON(&resp)
 	}
 
-	if !c.Validation.Required("username").Ok {
+	if !c.Validation.Required(username).Ok {
 		resp.Err = "empty-username"
 		resp.Success = false
 		return c.RenderJSON(&resp)
 	}
-	username := c.Params.Get("username")
-	password := c.Params.Get("password")
 
-	_, err = insertMachine(&User.ID, nil, titlePtr, &address, &port, &username, &password)
+	if username == "root" {
+		resp.Err = "root-not-allowed"
+		resp.Success = false
+		return c.RenderJSON(&resp)
+	}
+
+	_, err = insertMachine(&User.ID, nil, titlePtr, &addr, &port, &username, &password)
 	if err != nil {
 		resp.Err = "database-error"
+		resp.Success = false
+		return c.RenderJSON(&resp)
+	}
+
+	resp.Err = ""
+	resp.Success = true
+	return c.RenderJSON(&resp)
+}
+
+// /machine/delete
+func (c Machine) Delete(machineID int) revel.Result {
+	var resp simpleJsonResp
+
+	User, err := getUserFromSession(c.Session)
+	if err != nil {
+		resp.Err = "not-logged-in"
+		resp.Success = false
+		return c.RenderJSON(&resp)
+	}
+
+	_, err = database.DB.Exec("DELETE FROM server_owners WHERE machine_id=?", machineID)
+	if err != nil {
+		revel.WARN.Println(err)
+		resp.Err = "database-error"
+		resp.Success = false
+		return c.RenderJSON(&resp)
+	}
+
+	_, err = database.DB.Exec("DELETE FROM servers WHERE machine_id=?", machineID)
+	if err != nil {
+		revel.WARN.Println(err)
+		resp.Err = "database-error"
+		resp.Success = false
+		return c.RenderJSON(&resp)
+	}
+
+	var exists bool
+	err = database.DB.QueryRow("SELECT EXISTS(SELECT * FROM machine_owners WHERE user_id=? AND machine_id=?)",
+		User.ID, machineID).Scan(&exists)
+	if err != nil {
+		revel.WARN.Println(err)
+		resp.Err = "database-error"
+		resp.Success = false
+		return c.RenderJSON(&resp)
+	}
+
+	_, err = deleteMachine(machineID)
+	if err != nil {
+		revel.WARN.Println(err)
+		resp.Err = "unknown-error"
 		resp.Success = false
 		return c.RenderJSON(&resp)
 	}
@@ -170,6 +221,49 @@ func (c Machine) InstallDependencies(machineID int, rootPassword, game string) r
 	if len(deps.Missing) > 0 {
 		resp.Success = false
 		resp.Err = "missing-deps"
+		return c.RenderJSON(&resp)
+	}
+
+	resp.Success = true
+	resp.Err = ""
+	return c.RenderJSON(&resp)
+}
+
+func (c Machine) TestConnection(addr string, port int, username, password string) revel.Result {
+	var resp simpleJsonResp
+
+	_, err := getUserFromSession(c.Session)
+	if err != nil {
+		resp.Err = "not-logged-in"
+		resp.Success = false
+		return c.RenderJSON(&resp)
+	}
+
+	if !c.Validation.Required("addr").Ok {
+		resp.Err = "empty-ip-address"
+		resp.Success = false
+		return c.RenderJSON(&resp)
+	}
+
+	if port == 0 {
+		port = 22
+	}
+
+	if !c.Validation.Required(username).Ok {
+		resp.Err = "empty-username"
+		resp.Success = false
+		return c.RenderJSON(&resp)
+	}
+
+	m := &machine{
+		Addr: addr,
+		Port: port,
+	}
+
+	_, err = ssh.Connect(m.GetFullAddr(), username, password)
+	if err != nil {
+		resp.Success = false
+		resp.Err = "machine-connection-failed"
 		return c.RenderJSON(&resp)
 	}
 

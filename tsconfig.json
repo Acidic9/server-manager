@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"module": "commonjs",
+		"lib": [
+			"es6",
+			"dom"
+		],
+		"sourceMap": false,
+		"outDir": "./public/js",
+		"removeComments": true,
+		"noImplicitAny": false,
+		"noImplicitThis": false,
+		"strictNullChecks": true,
+		//"noEmit": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": [
+		"./typescript/**/*.d.ts"
+	]
+}

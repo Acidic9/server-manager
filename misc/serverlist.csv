@@ -1,9 +1,12 @@
 ark,arkserver,ARK: Survival Evolved,unreal4
+arma3,arma3server,ARMA 3,realvirtuality
 bb2,bb2server,BrainBread 2,source
+bd,bdserver,Base Defense,goldsource
 bf1942,bf1942server,Battlefield 1942,refractor
 bmdm,bmdmserver,Black Mesa: Deathmatch,source
 bo,boserver,Ballistic Overkill,unity3d
 bs,bsserver,Blade Symphony,source
+bt1944,bt1944server,Battalion 1944,unreal4
 cc,ccserver,Codename CURE,source
 cod,codserver,Call of Duty,idtech3
 cod2,cod2server,Call of Duty 2,iw2.0
@@ -21,6 +24,7 @@ dods,dodsserver,Day of Defeat: Source,source
 doi,doiserver,Day of Infamy,source
 dst,dstserver,Don't Starve Together,dontstarve
 em,emserver,Empires Mod,source
+etl,etlserver,ET: Legacy,idtech3
 fctr,fctrserver,Factorio,factorio
 fof,fofserver,Fistful of Frags,source
 ges,gesserver,GoldenEye: Source,source
@@ -30,8 +34,10 @@ hldm,hldmserver,Half-Life: Deathmatch,goldsource
 hldms,hldmsserver,Half-Life Deathmatch: Source,source
 hw,hwserver,Hurtworld,unity3d
 ins,insserver,Insurgency,source
-jc2,jc2server,Just Cause 2,avalanche
+jc2,jc2server,Just Cause 2,avalanche2.0
+jc3,jc3server,Just Cause 3,avalanche3.0
 kf,kfserver,Killing Floor,unreal2
+kf2,kf2server,Killing Floor 2,unreal3
 l4d,l4dserver,Left 4 Dead,source
 l4d2,l4d2server,Left 4 Dead 2,source
 mc,mcserver,Minecraft,lwjgl2
@@ -51,9 +57,13 @@ qw,qwserver,Quake World,quake
 ricochet,ricochetserver,Ricochet,goldsource
 ro,roserver,Red Orchestra: Ostfront 41-45,unreal2
 rust,rustserver,Rust,unity3d
+rw,rwserver," Rising World",risingworld
+samp,sampserver,San Andreas Multiplayer,renderware
 sb,sbserver,Starbound,starbound
 sdtd,sdtdserver,7 Days to Die,unity3d
+squad,squadserver,Squad,unreal4
 ss3,ss3server,Serious Sam 3: BFE,seriousengine35
+st,stserver,Stationeers,unity3d
 sven,svenserver,Sven Co-op,goldsource
 terraria,terrariaserver,Terraria,terraria
 tf2,tf2server,Team Fortress 2,source
@@ -65,4 +75,4 @@ ut2k4,ut2k4server,Unreal Tournament 2004,unreal2
 ut3,ut3server,Unreal Tournament 3,unreal3
 ut99,ut99server,Unreal Tournament 99,unreal
 wet,wetserver,Wolfenstein: Enemy Territory,idtech3
-﻿arma3,arma3server,ARMA 3,realvirtuality
+zps,zpsserver,Zombie Panic! Source,source

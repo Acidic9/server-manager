@@ -572,7 +572,7 @@ func (c Server) Status(ws *websocket.Conn) revel.Result {
 			}
 
 			go func(m machine) {
-				conn, err := ssh.Connect(m.GetFullAddr(), m.Username, m.Password)
+				conn, err := ssh.Connect(m.GetFullAddr(), m.Username, m.Password, time.Second*6)
 				if err != nil {
 					for _, s := range servers {
 						if s.MachineID == m.ID && s.Status == "" {

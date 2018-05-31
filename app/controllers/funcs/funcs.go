@@ -139,7 +139,7 @@ func CreateLogFile(userID, serverID, machineID int, task string) (*os.File, erro
 			userID,
 			serverID,
 			machineID,
-			MakeTimestamp(),
+			MakeTimestamp()/1000,
 			task,
 		),
 	)
@@ -154,6 +154,7 @@ func WriteLogFile(content []byte, userID, serverID, machineID int, task string) 
 	if err != nil {
 		return logFile, err
 	}
+	defer logFile.Close()
 
 	content = colorRegex.ReplaceAll(content, []byte(""))
 	content = bytes.Replace(content, []byte("\r\033[K"), []byte{'\r'}, -1)

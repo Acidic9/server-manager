@@ -1,7 +1,12 @@
 package app
 
 import (
+	"io/ioutil"
+	"os"
+	"path/filepath"
+	"strconv"
 	"strings"
+	"time"
 
 	"server-manager-revel/app/controllers/database"
 
@@ -45,6 +50,7 @@ func init() {
 	revel.OnAppStart(database.InitDB)
 	revel.OnAppStart(games.LoadAllGames)
 	revel.OnAppStart(InitTmplFuncs)
+	revel.OnAppStart(CleanLogs)
 }
 
 // HeaderFilter adds common security headers
@@ -74,4 +80,71 @@ func InitTmplFuncs() {
 	revel.TemplateFuncs["capitalize"] = func(s string) string {
 		return strings.Title(s)
 	}
+}
+
+func CleanLogs() {
+	revel.INFO.Println("Cleaning all log files")
+
+	files, err := ioutil.ReadDir(filepath.Join(revel.BasePath, "private", "logs"))
+	if err != nil {
+		revel.ERROR.Println(err)
+	} else {
+		for _, logFile := range files {
+			os.Remove(filepath.Join(
+				revel.BasePath,
+				"private",
+				"logs",
+				logFile.Name(),
+			))
+		}
+	}
+
+	go func() {
+		for {
+			time.Sleep(time.Minute * 5)
+
+			revel.INFO.Println("Cleaning log files older than 24 hrs")
+			files, err := ioutil.ReadDir(filepath.Join(revel.BasePath, "private", "logs"))
+			if err != nil {
+				revel.ERROR.Println(err)
+				continue
+			}
+
+			for _, logFile := range files {
+				if logFile.IsDir() {
+					continue
+				}
+
+				{
+					logFileNameParts := strings.Split(strings.TrimSuffix(logFile.Name(), ".log"), "_")
+					if len(logFileNameParts) < 4 {
+						goto deleteFile
+					}
+
+					timestamp, err := strconv.ParseInt(logFileNameParts[3], 10, 64)
+					if err != nil {
+						goto deleteFile
+					}
+
+					t := time.Unix(timestamp, 0)
+
+					if time.Now().Sub(t).Hours() <= 24 {
+						continue
+					}
+				}
+
+			deleteFile:
+				err = os.Remove(filepath.Join(
+					revel.BasePath,
+					"private",
+					"logs",
+					logFile.Name(),
+				))
+				if err != nil {
+					revel.ERROR.Println(err)
+				}
+
+			}
+		}
+	}()
 }

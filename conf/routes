@@ -6,6 +6,7 @@
 module:testrunner
 # module:jobs
 
+GET     /test                                   App.Test
 
 GET     /                                       App.Index
 GET     /servers                                App.Servers
@@ -22,8 +23,10 @@ GET     /logs/:logFile                          App.Logs
 POST    /user/login                             User.Login
 
 GET     /machine/add                            Machine.Add
+GET     /machine/delete                         Machine.Delete
 GET     /machine/list                           Machine.List
 POST    /machine/install-dependencies           Machine.InstallDependencies
+GET     /machine/test-connection                Machine.TestConnection
 
 POST    /server/start                           Server.Start
 POST    /server/stop                            Server.Stop

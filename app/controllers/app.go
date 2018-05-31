@@ -27,6 +27,14 @@ type sqlResult struct {
 	RowsAffected int
 }
 
+func (c App) Test(foo int) revel.Result {
+	if c.Validation.Required(foo).Ok {
+		return c.RenderText("It's OK")
+	}
+
+	return c.RenderText("It's NOT!!!!!! OK!!!!!! NOT OK!")
+}
+
 // /
 func (c App) Index() revel.Result {
 	User, err := getUserFromSession(c.Session)
@@ -158,13 +166,12 @@ func (c App) Logout() revel.Result {
 }
 
 // /logs/:logFile
-func (c App) Logs() revel.Result {
+func (c App) Logs(logFile string) revel.Result {
 	User, err := getUserFromSession(c.Session)
 	if err != nil {
 		return c.NotFound("Log file does not exist or you have insufficient permissions")
 	}
 
-	logFile := c.Params.Get("logFile")
 	logFileParts := strings.Split(logFile, "_")
 	if len(logFileParts) == 0 || strconv.Itoa(User.ID) != logFileParts[0] {
 		return c.NotFound("Log file does not exist or you have insufficient permissions")
